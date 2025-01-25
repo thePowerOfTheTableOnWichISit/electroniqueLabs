@@ -1,0 +1,17 @@
+import Graph
+
+
+titres = ["Distribution de AC/CC 1",
+          "Distribution de 2",
+          "Distribution de Inox",
+          "Distribution de Acier",
+          "Distribution de Pile"]
+
+emps = ["données DC.lvm",
+        "Données DC -1,1.lvm",
+        "inox, alu.lvm",
+        "pile.lvm"]
+
+graphiques = []
+for i, j in zip(titres, emps):
+    graphiques.append(Graph.Constructeur_de_Graphique(j, i))
