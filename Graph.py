@@ -24,9 +24,24 @@ def Constructeur_de_Graphique(file_path, Titre):
 
     num_mesure = np.arange(len(données))
     tension_values = np.array(données, dtype=float)
+    uncertainty = 0.005 * np.abs(tension_values)
 
     # Création du graphique
     plt.figure(figsize=(10, 6))
+
+    plt.errorbar(
+        num_mesure,
+        tension_values,
+        yerr=uncertainty,
+        fmt='o',
+        color='red',
+        ecolor='blue',
+        elinewidth=0.8,
+        capsize=2,
+        label=None,
+        markersize=4
+    )
+
     plt.scatter(num_mesure, tension_values, color='red', label=None, s=10)
 
     # Ajout des annotations
