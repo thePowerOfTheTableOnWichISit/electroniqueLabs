@@ -33,8 +33,8 @@ def Constructeur_de_Graphique(file_path, Titre):
     plt.scatter(num_mesure, tension_values, color='red', label=None, s=4)
 
     # Ajout des annotations
-    plt.xlabel('Index de la mesure', fontsize=12)
-    plt.ylabel('Tension (V)', fontsize=12)
+    plt.xlabel('Index de la mesure[-]', fontsize=12)
+    plt.ylabel('Tension [V]', fontsize=12)
     plt.title(Titre, fontsize=14, fontweight='bold')
     plt.minorticks_on()
     ax = plt.gca()
@@ -50,7 +50,7 @@ def Constructeur_de_Graphique(file_path, Titre):
         f"Nombre de mesures prises = 1000"
     )
     text_proxy = mpatches.Patch(color='none', label=f"Valeurs uniques:\n\n{valeurs_uniques}")
-    plt.legend([f"Valeurs uniques:\n\n{valeurs_uniques}"], fontsize=10, loc='upper center', bbox_to_anchor=(0.1, -0.15), handles=[text_proxy])
+    plt.legend([f"Valeurs uniques:\n\n{valeurs_uniques}"], fontsize=10, loc='upper center', bbox_to_anchor=(0.17, -0.15), handles=[text_proxy])
 
     # Affichage
     plt.tight_layout()
