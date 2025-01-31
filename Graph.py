@@ -1,5 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
+import matplotlib.ticker as mticker
+import matplotlib.patches as mpatches
 
 
 def évaluer_signal_stationnaire(tension_values):
@@ -24,41 +26,31 @@ def Constructeur_de_Graphique(file_path, Titre):
 
     num_mesure = np.arange(len(données))
     tension_values = np.array(données, dtype=float)
-    uncertainty = 0.005 * np.abs(tension_values)
 
     # Création du graphique
     plt.figure(figsize=(10, 6))
 
-    plt.errorbar(
-        num_mesure,
-        tension_values,
-        yerr=uncertainty,
-        fmt='o',
-        color='red',
-        ecolor='blue',
-        elinewidth=0.8,
-        capsize=2,
-        label=None,
-        markersize=4
-    )
-
-    plt.scatter(num_mesure, tension_values, color='red', label=None, s=10)
+    plt.scatter(num_mesure, tension_values, color='red', label=None, s=4)
 
     # Ajout des annotations
-    plt.xlabel('Numéro de mesure', fontsize=12)
+    plt.xlabel('Index de la mesure', fontsize=12)
     plt.ylabel('Tension (V)', fontsize=12)
     plt.title(Titre, fontsize=14, fontweight='bold')
-    plt.grid(True, which='both', linestyle='--', linewidth=0.5, alpha=0.7)
     plt.minorticks_on()
+    ax = plt.gca()
+    ax.yaxis.set_major_formatter(mticker.FormatStrFormatter("%.4f"))
+    plt.ylim(min(tension_values) - min(tension_values) * 0.0003 , max(tension_values) + max(tension_values) * 0.0003)
 
     #Légende
     a = évaluer_signal_stationnaire(tension_values)
     valeurs_uniques = (
         f"$\\bar{{v}}$= {a[0]:.2f} V\n"
         f"$\\sigma^2$= {a[1]:.2e} V²\n"
-        f"SNR= {a[2]:.2f}"
+        f"SNR= {a[2]:.2f}\n"
+        f"Nombre de mesures prises = 1000"
     )
-    plt.legend([f"Valeurs uniques:\n\n{valeurs_uniques}"], fontsize=10, loc='center left', bbox_to_anchor=(1, 0.5))
+    text_proxy = mpatches.Patch(color='none', label=f"Valeurs uniques:\n\n{valeurs_uniques}")
+    plt.legend([f"Valeurs uniques:\n\n{valeurs_uniques}"], fontsize=10, loc='upper center', bbox_to_anchor=(0.1, -0.15), handles=[text_proxy])
 
     # Affichage
     plt.tight_layout()

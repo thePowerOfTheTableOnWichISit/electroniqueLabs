@@ -1,17 +1,17 @@
 import Graph
 
 
-titres = ["Distribution de AC/CC 1",
-          "Distribution de 2",
-          "Distribution de Inox",
-          "Distribution de Acier",
-          "Distribution de Pile"]
+titres = [
+          "Distribution de plusieurs mesures de tension \n d'un convertisseur AC/CC",
+          "Distribution de plusieurs mesures de tension \n d'un convertisseur AC/CC sur une plage de -1V à 1V",
+          "Distribution de plusieurs mesures de tension d'une pile"
+          ]
 
-emps = ["données DC.lvm",
+emps = [
+        "données DC.lvm",
         "Données DC -1,1.lvm",
-        "inox, alu.lvm",
-        "acier, alu.lvm",
-        "pile.lvm"]
+        "pile.lvm"
+        ]
 
 graphiques = []
 for i, j in zip(titres, emps):
